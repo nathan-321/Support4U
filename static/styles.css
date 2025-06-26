@@ -1,0 +1,141 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  background: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+}
+
+label {
+  float: left;
+  margin-right: 10px;
+  padding-right: 0px;
+  padding-left: 94px;
+  margin-top: 20px;
+  width: 106px;
+}
+
+nav {
+  background: #097bc2d5;
+  color: white;
+  height: 65px;
+}
+
+a {
+  color: #097bc2d5;
+}
+
+nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 23px 40px;
+  font-size: 19px;
+  text-decoration: none;
+}
+
+nav img {
+  height: 40px;
+  display: block;
+  float: left;
+  padding: 5px;
+  margin-left: 35px;
+  margin-top: 5px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+#rightNav {
+  float: right;
+}
+
+#leftNav {
+  margin-left: 0;
+  padding-left: 5px;
+}
+
+.box {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 25px 10px 20px 25px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+input,
+textarea,
+button,
+select {
+  position: relative;
+  width: 600px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid grey;
+  border-radius: 6px;
+}
+
+select {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 620px;
+}
+
+table {
+  width: 1000px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  align-content: center;
+}
+
+table th,
+td {
+  text-align: center;
+  border: 1px solid;
+}
+
+button {
+  width: 400px;
+  margin-left: 300px;
+  padding-left: 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#tableButtons {
+  width: 90%;
+  margin-left: 0px;
+  padding-left: 10px;
+  background-color: rgb(0, 153, 255);
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.success {
+  background: #a6ecb7;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c3e6cb;
+  color: #176429;
+  border-radius: 4px;
+}
+
+.error {
+  background: #f8d7da;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #f5c6cb;
+  color: #8a1521;
+  border-radius: 4px;
+}

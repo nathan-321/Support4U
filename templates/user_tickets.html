@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <h2>My Tickets</h2>
+  <table>
+    <tr>
+      <th>Ticket</th>
+      <th>Priority</th>
+      <th>Created at</th>
+      <th>Status</th>
+      <th>Edit</th>
+    </tr>
+    {% for ticket in tickets %}{% if current_user.user_id ==
+    ticket.ticket_creator_id %}
+    <tr>
+      <td>{{ ticket.title }}</td>
+      <td>{{ ticket.priority }}</td>
+      <td>{{ ticket.date_time_created }}</td>
+      <td>{{ ticket.status }}</td>
+      <td>
+        <a
+          href="{{ url_for('tickets.edit_ticket', ticket_id=ticket.ticket_id) }}"
+        >
+          <button id="tableButtons">Edit</button></a
+        >
+      </td>
+    </tr>
+    {% endif %}{% endfor %}
+  </table>
+</html>
