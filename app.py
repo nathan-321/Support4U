@@ -1,6 +1,8 @@
-from flask import Flask
-app = Flask(__name__)
+from __init__ import setup_app
 
-@app.route('/')
-def hello():
-    return 'Welcome to Support4U!'
+app = setup_app(test_config=False)
+
+# Runs the app through setup_app
+if __name__ == '__main__':
+    testing=False
+    app.run(debug=True)
