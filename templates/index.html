@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    {% extends 'layout.html' %}
+
+    {% block title %}{% endblock %}
+
+    {% block content %}
+        {% if current_user.username %}
+            {% if current_user.account_type_admin %}
+                {% include 'all_tickets.html' %}
+            {% else %} 
+                {% include 'user_tickets.html' %}
+            {% endif%}
+        {% else %} 
+            {% include 'login.html' %}  
+        {%endif%}
+    {% endblock %}
+
+
+      </ul>
+    </div>
+  </body>
+</html>
