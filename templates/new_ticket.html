@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'layout.html' %} {% block content %}
+  <h2>Submit a Ticket</h2>
+  <form method="POST" action="/submit-ticket">
+    <label for="description">Title: </label>
+    <input name="title" placeholder="Title" required /><br />
+    <label for="description">Description: </label>
+    <textarea name="description" placeholder="Describe your issue"></textarea>
+    <label for="priority">Priority: </label>
+    <input
+      name="priority"
+      type="number"
+      placeholder="Priority (between 1 and 5)"
+      min="1"
+      max="5"
+      required
+    /><br />
+
+    <label for="status">Status: </label>
+    <select name="status">
+      <option value="Open">Open</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Resolved">Resolved</option>
+      <option value="Closed">Closed</option></select
+    ><br />
+    <button type="submit">Submit Ticket</button>
+  </form>
+  {% endblock %}
+</html>

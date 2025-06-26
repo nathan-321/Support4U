@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <nav>
+    <img
+      src="{{ url_for('static', filename='help_logo.png') }}"
+      alt="Support4U"
+    />
+    <a id="leftNav" href="/">Support4U</a>
+    {% if current_user.username %}
+      <a id="rightNav" onclick="return confirm('Are you sure you want to logout?')" href="/logout">Logout</a>
+      
+      {% if current_user.account_type_admin %}
+        <a id="rightNav" href="/users">Promote User</a>
+      {% endif %}
+      
+      <a id="rightNav" href="/submit-ticket">New Ticket</a>
+      <a id="rightNav" href="/">Dashboard</a>
+      
+    {% else %}
+      <a id="rightNav" href="/">Login</a>
+    {% endif %}
+  </nav>
+</html>

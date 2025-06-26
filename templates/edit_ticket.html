@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'layout.html' %} {% block content %}
+  <h2>Edit Ticket</h2>
+
+  <form method="POST">
+    <label for="title">Title: </label>
+    <input name="title" value="{{ ticket.title }}" required /><br />
+    <label for="description">Description: </label>
+    <textarea name="description">{{ ticket.description }}</textarea><br />
+    <label for="priority">Priority: </label>
+    <input
+      name="priority"
+      value="{{ ticket.priority }}"
+      type="number"
+      min="1"
+      max="5"
+      required
+    /><br />
+
+    <label for="status">Status:</label>
+    <select name="status" value="{{ ticket.status }}">
+      <option value="{{ ticket.status }}" selected>{{ ticket.status }}</option>
+      <option value="Open">Open</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Resolved">Resolved</option>
+      <option value="Closed">Closed</option>
+    </select>
+
+    <button type="submit">Update Ticket</button>
+  </form>
+  <br />
+
+  <a href="/">Back to tickets</a>
+  {% endblock %}
+</html>

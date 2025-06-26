@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'layout.html' %} {% block content %}
+  <h2>Promote User</h2>
+
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Email</th>
+      <th>Account Type</th>
+      <th>Promote/Demote</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{% if user.account_type_admin %}Admin{% else %}Regular{% endif %}</td>
+      <td>
+        <form
+          method="POST"
+          action="{{ url_for('promote_user.promote_user', user_id=user.user_id) }}"
+        >
+          {% if user.account_type_admin %}
+          <button
+            id="tableButtons"
+            type="submit"
+            onclick="return confirm('Are you want to demote this user?')"
+          >
+            Demote
+          </button>
+          {% else %}
+          <button
+            id="tableButtons"
+            type="submit"
+            onclick="return confirm('Are you want to promote this user?')"
+          >
+            Promote
+          </button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endblock %}
+</html>
