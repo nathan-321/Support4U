@@ -1,15 +1,13 @@
-# Creates a regular user
 from models.models import User, db
 from utils.utils import encypt_password
 
-
+# Creates a regular user
 def example_register_user(client):
     return client.post('/register', data={
         'username': 'Regular',
         'email': 'regular@email.com',
         'password': 'password123'
     }, follow_redirects=True)
-
 
 # Creates and logs in regular user
 def example_login_user(client):
@@ -19,6 +17,7 @@ def example_login_user(client):
         'password': 'password123'
     }, follow_redirects=True)
 
+# Creates a admin user
 def create_admin_user():
     user = User(
         username="Admin",

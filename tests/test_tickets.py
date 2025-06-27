@@ -1,10 +1,8 @@
-from conftest import app
-import pytest
-from models.models import Ticket, User, db
 from tests.setup_test_tickets import example_admin_post_ticket, example_regular_user_post_ticket
-from tests.setup_test_users import example_login_admin_user
 
-
+# These tests ensure that functionality of submit, edit and delete.
+# Any user can submit and edit, while only admin can delete.
+ 
 def test_regular_user_submit_ticket(client):
     response = example_regular_user_post_ticket(client)
     assert response.status_code == 200
@@ -41,11 +39,3 @@ def test_success_delete_ticket(client):
     response = client.post('/delete-ticket/1', follow_redirects=True)
     print(response.data)
     assert b'Ticket deleted successfully!' in response.data
-
-# def demote_user(client):
-#     example_login_admin_user(client)
-#     example_regular_user_post_ticket(client)
-#     example_login_admin_user(client)
-
-#     response = client.post('/delete-ticket/1', follow_redirects=True)
-#     assert 'Regular has been demoted to a regular user!' in response.data
