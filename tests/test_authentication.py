@@ -1,6 +1,8 @@
 import pytest
 from tests.test_tickets import example_regular_user_post_ticket
 
+# Ensures authentication is setup so that any user can't access certain pages.
+
 def test_require_login(client):
     response = client.get('/submit-ticket', follow_redirects=True)
     assert response.status_code == 405

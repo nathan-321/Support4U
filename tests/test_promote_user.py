@@ -1,8 +1,7 @@
-import pytest
-
 from tests.setup_test_tickets import example_regular_user_post_ticket
 from tests.setup_test_users import example_login_admin_user, example_login_admin_user, example_register_user
 
+# Promotes and demotes a user
 
 def promote_user(client):
     example_register_user(client)
