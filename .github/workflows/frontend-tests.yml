@@ -12,6 +12,7 @@ jobs:
     env: 
       TESTING: sqlite:///:memory
       SECRET_KEY: 123456
+      DATABASE: sqlite:///support4u.db
       
     steps:
       - uses: actions/checkout@v4
