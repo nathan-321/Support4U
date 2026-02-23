@@ -10,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env: 
-      TESTING: sqlite:///:memory
+      TESTING_DATABASE: sqlite:///:memory
       SECRET_KEY: 123456
-      DATABASE: sqlite:///support4u.db
+      REAL_DATABASE: sqlite:///support4u.db
+      CYPRESS_TESTING: True
       
     steps:
       - uses: actions/checkout@v4
