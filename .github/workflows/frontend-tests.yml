@@ -1,0 +1,30 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+
+    env: 
+      TESTING: sqlite:///:memory
+      SECRET_KEY: 123456
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install frontend deps
+        run: npm ci
+
+      - name: Run Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          start: flask run --host=0.0.0.0 --port=5000
+          wait-on: http://localhost:5000
