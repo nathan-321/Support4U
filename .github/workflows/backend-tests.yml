@@ -9,6 +9,9 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
 
+    env: 
+      TESTING=sqlite:///:memory:
+      
     steps:
       - uses: actions/checkout@v4
 
