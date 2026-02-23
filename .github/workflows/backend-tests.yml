@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env: 
-      TESTING=sqlite:///:memory:
+      TESTING: sqlite:///:memory
+      SECRET_KEY: 123456
       
     steps:
       - uses: actions/checkout@v4
