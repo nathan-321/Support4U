@@ -29,10 +29,10 @@ def setup_app(test_config=False):
 
     # If testing, it will create a seperate database
     if test_config or os.getenv('CYPRESS_TESTING') == True:
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TESTING_DATABASE')
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TESTING')
         app.config['TESTING'] = True
     else:
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('REAL_DATABASE')
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE')
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
