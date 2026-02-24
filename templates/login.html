@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <h2>Login</h2>
-  <form method="POST" action="/login">
+  <form data-testid="login_form" method="POST" action="/login">
     <label for="username">Username:</label
-    ><input name="username" type="text" placeholder="Username" required />
+    ><input data-testid="username_input" name="username" type="text" placeholder="Username" required />
 
     <label for="password">Password:</label
-    ><input name="password" type="password" placeholder="Password" required />
+    ><input data-testid="password_input" name="password" type="password" placeholder="Password" required />
 
-    <button type="submit">Login</button>
+    <button data-testid="submit_button" type="submit">Login</button>
   </form>
   <p>Don't have an account? <a href="/register">Register</a></p>
 </html>

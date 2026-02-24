@@ -7,17 +7,17 @@
     />
     <a id="leftNav" href="/">Support4U</a>
     {% if current_user.username %}
-      <a id="rightNav" onclick="return confirm('Are you sure you want to logout?')" href="/logout">Logout</a>
+      <a data-testid="logout_button" id="rightNav" onclick="return confirm('Are you sure you want to logout?')" href="/logout">Logout</a>
       
       {% if current_user.account_type_admin %}
-        <a id="rightNav" href="/users">Promote User</a>
+        <a data-testid="promote_user_button" id="rightNav" href="/users">Promote User</a>
       {% endif %}
       
-      <a id="rightNav" href="/submit-ticket">New Ticket</a>
-      <a id="rightNav" href="/">Dashboard</a>
+      <a data-testid="new_ticket_button" id="rightNav" href="/submit-ticket">New Ticket</a>
+      <a data-testid="dashboard_button" id="rightNav" href="/">Dashboard</a>
       
     {% else %}
-      <a id="rightNav" href="/">Login</a>
+      <a data-testid="login_button" id="rightNav" href="/">Login</a>
     {% endif %}
   </nav>
 </html>

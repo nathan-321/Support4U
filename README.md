@@ -39,4 +39,7 @@ To run my pytests tests put the following command into the terminal:
 
 1. pytests
 
+To run my cypress tests put the following command into the terminal:
+
+1. npx cypress open
 
