@@ -9,7 +9,7 @@
     <label for="description">Description: </label>
     <textarea name="description">{{ ticket.description }}</textarea><br />
     <label for="priority">Priority: </label>
-    <input
+    <input data-testid="ticket_priority"
       name="priority"
       value="{{ ticket.priority }}"
       type="number"
@@ -19,7 +19,7 @@
     /><br />
 
     <label for="status">Status:</label>
-    <select name="status" value="{{ ticket.status }}">
+    <select data-testid="ticket_status" name="status" value="{{ ticket.status }}">
       <option value="{{ ticket.status }}" selected>{{ ticket.status }}</option>
       <option value="Open">Open</option>
       <option value="In Progress">In Progress</option>
@@ -27,7 +27,7 @@
       <option value="Closed">Closed</option>
     </select>
 
-    <button type="submit">Update Ticket</button>
+    <button data-testid="update_ticket_submit" type="submit">Update Ticket</button>
   </form>
   <br />
 

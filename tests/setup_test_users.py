@@ -23,7 +23,7 @@ def create_admin_user():
         username="Admin",
         email="admin@email.com",
         password=encypt_password("password123"),
-        account_type_admin=True  # or however you mark admin
+        account_type_admin=True 
     )
     db.session.add(user)
     db.session.commit()
