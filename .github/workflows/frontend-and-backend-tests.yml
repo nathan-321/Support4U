@@ -26,7 +26,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run pytest and fail if test coverage below 80%
-        run: coverage run -m pytest
+        run: |
+          coverage run -m pytest
           coverage report --fail-under=80 --omit="tests/*"
 
       - name: Set up Node
