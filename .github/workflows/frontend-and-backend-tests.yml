@@ -45,4 +45,4 @@ jobs:
           wait-on: http://localhost:5000
 
       - name: Run Bandit Security Scanner (SAST)
-        run: bandit -r . -x tests,.venv
+        run: bandit -r . -x ./tests
