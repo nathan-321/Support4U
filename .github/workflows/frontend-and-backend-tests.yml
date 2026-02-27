@@ -9,12 +9,12 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
 
-    env: 
+    env:
       TESTING_DATABASE: sqlite:///:memory
       SECRET_KEY: 123456
       PROD_DATABASE: sqlite:///support4u.db
       CYPRESS_TESTING: True
-      
+
     steps:
       - uses: actions/checkout@v4
 
@@ -27,23 +27,21 @@ jobs:
 
       - name: Run pytest and fail if test coverage below 80%
         run: coverage run -m pytest
-        run: coverage report --fail-under=80 --omit="tests/*"
+          coverage report --fail-under=80 --omit="tests/*"
 
-      - name: Set up Node 
-        uses: actions/setup-node@v4 
-        with: 
-          node-version: 20 
-      
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Install Cypress dependencies
         run: npm ci
 
-      - name: Run Cypress tests 
-        uses: cypress-io/github-action@v6 
-        with: 
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
           start: python app.py
           wait-on: http://localhost:5000
 
       - name: Run Bandit Security Scanner (SAST)
         run: bandit -r Support4U
-
-        
