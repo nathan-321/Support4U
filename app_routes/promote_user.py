@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, current_app, render_template, request, redirect, url_for, flash
+from flask import Blueprint, current_app, render_template, request, redirect, url_for, flash
 from flask_login import login_required
 from models.models import db, User
 from utils.utils import admin_logged_in
@@ -17,7 +17,7 @@ def users():
 @promote_user_blueprint.route('/promote-user/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def promote_user(user_id):
-    if (admin_logged_in() == False):
+    if not admin_logged_in():
         return redirect(url_for('home.index'))
     
     user = db.session.query(User).filter_by(user_id=user_id).first()

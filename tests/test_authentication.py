@@ -1,4 +1,3 @@
-import pytest
 from tests.test_tickets import example_regular_user_post_ticket
 
 # Ensures authentication is setup so that any user can't access certain pages.

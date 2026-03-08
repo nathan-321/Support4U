@@ -1,4 +1,4 @@
-from flask import Flask, current_app, request, flash
+from flask import current_app, request, flash
 from flask_login import current_user
 import hashlib
 
@@ -9,9 +9,10 @@ def encypt_password(password):
 
 # Ensures user is an admin
 def admin_logged_in():
-    if (current_user.account_type_admin == False):
+    if not current_user.account_type_admin:
         flash('You must be admin to access this page!', 'error')
         return False
+    return True
 
 # Gets the login details and returns in a dictionary
 # Made the email optional as when logging in the user doesn't require an email
@@ -24,4 +25,4 @@ def request_user_details():
 # Displays and logs the database error
 def displaying_error(db_error):
     current_app.logger.error(f"Error: {db_error}")
-    return(flash(f'Error! Unable to perform actions, see logger for more info!', 'error'))
+    return(flash('Error! Unable to perform actions, see logger for more info!', 'error'))
