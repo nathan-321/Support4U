@@ -28,7 +28,7 @@ def setup_app(test_config=False):
     app.secret_key = os.getenv('SECRET_KEY')
 
     # If testing, it will create a seperate database
-    if test_config or os.getenv('CYPRESS_TESTING') == "True":
+    if test_config:
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('TESTING_DATABASE')
         app.config['TESTING'] = True
     else:

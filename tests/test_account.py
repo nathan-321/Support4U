@@ -1,4 +1,3 @@
-import pytest
 from setup_test_users import example_login_user, example_register_user
 
 # Creates tests on registering users and logging in users
@@ -49,4 +48,14 @@ def test_invalid_register_duplicate_account(client):
     }, follow_redirects=True)
 
     assert b'Your account already exists!' in response.data
+
+# Security paths
+
+def test_SQL_injection(client):
+    response = client.post('/login', data={
+        'username': '',
+        'password': 'password123'
+    }, follow_redirects=True)
+
+    assert b'Incorrect username or password! Please try again.' in response.data
 

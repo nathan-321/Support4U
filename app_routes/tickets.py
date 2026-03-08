@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, current_app, render_template, request, redirect, url_for, flash
+from flask import Blueprint, current_app, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required
 from models.models import db, Ticket
 from utils.utils import admin_logged_in, displaying_error
@@ -34,7 +34,7 @@ def submit_ticket():
 def edit_ticket(ticket_id):
     ticket = db.session.query(Ticket).filter_by(ticket_id=ticket_id).first()
 
-    if (current_user.account_type_admin == False) and ticket.ticket_creator_id != current_user.user_id:
+    if not current_user.account_type_admin and ticket.ticket_creator_id != current_user.user_id:
         flash('You are not authorized to edit this ticket!', 'error')
         current_app.logger.warning("You are not authorized to edit this ticket!")
         return redirect(url_for('home.index'))
@@ -58,7 +58,7 @@ def edit_ticket(ticket_id):
 @ticket_blueprint.route('/delete-ticket/<int:ticket_id>', methods=['GET', 'POST'])
 @login_required
 def delete_ticket(ticket_id):
-    if (admin_logged_in() == False):
+    if not admin_logged_in():
         return redirect(url_for('home.index'))
     
     ticket = db.session.query(Ticket).filter_by(ticket_id=ticket_id).first()
