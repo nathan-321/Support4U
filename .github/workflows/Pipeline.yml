@@ -18,7 +18,7 @@ jobs:
       - name: Linting Python with Ruff
         run: pip install ruff && ruff check .
 
-  pytest:
+  pytest_and_cypress_tests:
     runs-on: ubuntu-latest
     needs: linting
 
@@ -38,12 +38,6 @@ jobs:
           coverage run -m pytest
           coverage report --fail-under=80 --omit="tests/*"
 
-  cypress_testing:
-    runs-on: ubuntu-latest
-    needs: pytest
-
-    steps:
-      - uses: actions/checkout@v4
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -60,7 +54,7 @@ jobs:
 
   sast_scanning:
     runs-on: ubuntu-latest
-    needs: cypress_testing
+    needs: pytest_and_cypress_tests
 
     steps:
       - uses: actions/checkout@v4
