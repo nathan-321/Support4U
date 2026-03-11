@@ -53,7 +53,7 @@ def test_invalid_register_duplicate_account(client):
 
 def test_SQL_injection(client):
     response = client.post('/login', data={
-        'username': '',
+        'username': "' OR 1=1 --",
         'password': 'password123'
     }, follow_redirects=True)
 

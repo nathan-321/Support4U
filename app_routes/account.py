@@ -15,7 +15,11 @@ def register():
         if account_exists:
             flash('Your account already exists!', 'error')
             return redirect(url_for('account.register'))
-
+        
+        if len(user_details["username"]) > 15:
+            flash('Your username is greater than 15 characters!', 'error')
+            return redirect(url_for('account.register'))
+        
         # There is frontend validation to ensure that all fields are provided and the email is an email address
         user = User(username=user_details["username"], email=user_details["email"], password=user_details["password"])
         try:

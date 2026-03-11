@@ -17,10 +17,10 @@ class User(UserMixin, db.Model):
 # Creates Ticket table
 class Ticket(db.Model):
     ticket_id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
     priority = db.Column(db.Integer, default=3)
-    status = db.Column(db.String(100), default="Open")
+    status = db.Column(db.String(11), default="Open")
     date_time_created = db.Column(db.DateTime, default=datetime.now().replace(microsecond=0))
     ticket_creator_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     ticket_creator = db.relationship('User', backref='tickets')
