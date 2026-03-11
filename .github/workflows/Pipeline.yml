@@ -23,7 +23,7 @@ jobs:
           python-version: "3.11"
 
       - name: Linting Python with Ruff
-        run: ruff check .
+        run: pip install ruff && ruff check .
 
   pytest:
     runs-on: ubuntu-latest
