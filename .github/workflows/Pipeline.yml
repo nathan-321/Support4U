@@ -22,6 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: linting
 
+    env:
+      TESTING_DATABASE: ${{ secrets.TESTING_DATABASE }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      PROD_DATABASE: ${{ secrets.PROD_DATABASE }}
+      CYPRESS_TESTING: ${{ secrets.CYPRESS_TESTING }}
+
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
