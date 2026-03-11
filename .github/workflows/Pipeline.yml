@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  linting:
     runs-on: ubuntu-latest
 
     env:
@@ -28,11 +28,21 @@ jobs:
       - name: Linting Python with Ruff
         run: ruff check .
 
+  pytest:
+    runs-on: ubuntu-latest
+    needs: linting
+
+    steps:
       - name: Run pytest and fail if test coverage below 80%
         run: |
           coverage run -m pytest
           coverage report --fail-under=80 --omit="tests/*"
 
+  cypress_testing:
+    runs-on: ubuntu-latest
+    needs: pytest
+
+    steps:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -47,9 +57,19 @@ jobs:
           start: python app.py
           wait-on: http://localhost:5000
 
+  sast_scanning:
+    runs-on: ubuntu-latest
+    needs: cypress_testing
+
+    steps:
       - name: Run Bandit Security Scanner (SAST)
         run: bandit -r . -x ./tests
 
+  dast_scanning:
+    runs-on: ubuntu-latest
+    needs: sast_scanning
+
+    steps:
       - name: Run Safety Dependency Security Scanner (DAST)
         run: safety check
 
