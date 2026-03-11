@@ -51,7 +51,7 @@ jobs:
         run: bandit -r . -x ./tests
 
       - name: Run Safety Dependency Security Scanner (DAST)
-        run: scan
+        run: safety check
 
       - name: OWASP Dependency Security Scanner (DAST)
         uses: dependency-check/Dependency-Check_Action@main
