@@ -39,12 +39,21 @@ def test_invalid_login_incorrect_password(client):
 
     assert b'Incorrect username or password! Please try again.' in response.data
 
+def test_invalid_short_password_account(client):
+    response = client.post('/register', data={
+        'username': 'Regular',
+        'email': 'regular@email.com',
+        'password': '123'
+    }, follow_redirects=True)
+
+    assert b"Your password doesn't meet the requirements!" in response.data
+
 def test_invalid_register_duplicate_account(client):
     example_register_user(client)
     response = client.post('/register', data={
         'username': 'Regular',
         'email': 'regular@email.com',
-        'password': 'password123'
+        'password': 'thisispassword123'
     }, follow_redirects=True)
 
     assert b'Your account already exists!' in response.data

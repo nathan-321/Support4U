@@ -2,6 +2,12 @@ from flask import current_app, request, flash
 from flask_login import current_user
 import hashlib
 
+# Checks password requirements
+def password_requirements(password):
+    if len(password) >= 15:
+        return True
+    return False    
+
 # Ensures password is encrypted before storing in database
 def encypt_password(password):
     hashed_password = hashlib.sha256(password.encode("utf-8")).hexdigest()
@@ -10,9 +16,23 @@ def encypt_password(password):
 # Ensures user is an admin
 def admin_logged_in():
     if not current_user.account_type_admin:
-        flash('You must be admin to access this page!', 'error')
         return False
     return True
+
+def admin_logged_in():
+    if not current_user.account_type_admin:
+        return False
+    return True
+
+# Gets inputted register details and checks if meets password requirements
+def password_requirements_and_encryption():
+    inputted_username = request.form['username']
+    inputted_email = request.form.get('email')
+    if password_requirements(request.form['password']):
+        inputted_password = encypt_password(request.form['password'])
+    else:
+        return False
+    return({"username": inputted_username, "email": inputted_email, "password": inputted_password})
 
 # Gets the login details and returns in a dictionary
 # Made the email optional as when logging in the user doesn't require an email
