@@ -19,10 +19,6 @@ def admin_logged_in():
         return False
     return True
 
-def admin_logged_in():
-    if not current_user.account_type_admin:
-        return False
-    return True
 
 # Gets inputted register details and checks if meets password requirements
 def password_requirements_and_encryption():
