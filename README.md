@@ -29,8 +29,13 @@ Lecturer testing purpose:
 
 An example of an admin account to login as (case-sentitive):
 
-Username: Nathan
-password: nathan
+Username: Lecturer
+password: thisispassword123
+
+An example of a normal account to login as (case-sentitive):
+
+Username: Matt
+password: strongpassword321
 
 Testing:
 ********
