@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import current_user, login_required, login_user, logout_user
 from models.models import db, User
-from utils.utils import displaying_error, request_user_details
+from utils.utils import displaying_error, password_requirements_and_encryption, request_user_details
 
 account_blueprint = Blueprint('account', __name__)
 
@@ -9,15 +9,19 @@ account_blueprint = Blueprint('account', __name__)
 @account_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        user_details = request_user_details()
+        if password_requirements_and_encryption():
+            user_details = password_requirements_and_encryption()
+        else:
+            flash("Your password doesn't meet the requirements!", 'error')
+            return redirect(url_for('account.register'))
+        
+        if len(user_details["username"]) > 15:
+            flash("Your username doesn't meet the requirements!", 'error')
+            return redirect(url_for('account.register'))
 
         account_exists = User.query.filter_by(email=user_details["email"]).first()
         if account_exists:
             flash('Your account already exists!', 'error')
-            return redirect(url_for('account.register'))
-        
-        if len(user_details["username"]) > 15:
-            flash('Your username is greater than 15 characters!', 'error')
             return redirect(url_for('account.register'))
         
         # There is frontend validation to ensure that all fields are provided and the email is an email address

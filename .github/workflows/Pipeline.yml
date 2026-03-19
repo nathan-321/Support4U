@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Linting Python with Ruff
+      - name: Linting with Ruff
         run: pip install ruff && ruff check .
 
   pytest_and_cypress_tests:
@@ -61,7 +61,7 @@ jobs:
       - name: Run Bandit Security Scanner (SAST)
         run: pip install bandit && bandit -r . -x ./tests
 
-  dast_scanning:
+  sca_scanning:
     runs-on: ubuntu-latest
     needs: sast_scanning
 

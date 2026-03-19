@@ -44,7 +44,7 @@ def test_invalid_register_duplicate_account(client):
     response = client.post('/register', data={
         'username': 'Regular',
         'email': 'regular@email.com',
-        'password': 'password123'
+        'password': 'thisispassword123'
     }, follow_redirects=True)
 
     assert b'Your account already exists!' in response.data

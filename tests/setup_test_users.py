@@ -6,7 +6,7 @@ def example_register_user(client):
     return client.post('/register', data={
         'username': 'Regular',
         'email': 'regular@email.com',
-        'password': 'password123'
+        'password': 'thisispassword123'
     }, follow_redirects=True)
 
 # Creates and logs in regular user
@@ -14,7 +14,7 @@ def example_login_user(client):
     example_register_user(client)
     return client.post('/login', data={
         'username': 'Regular',
-        'password': 'password123'
+        'password': 'thisispassword123'
     }, follow_redirects=True)
 
 # Creates a admin user
@@ -22,7 +22,7 @@ def create_admin_user():
     user = User(
         username="Admin",
         email="admin@email.com",
-        password=encypt_password("password123"),
+        password=encypt_password("thisispassword123"),
         account_type_admin=True 
     )
     db.session.add(user)
@@ -34,6 +34,6 @@ def example_login_admin_user(client):
     create_admin_user()
     return client.post('/login', data={
         'username': 'Admin',
-        'password': 'password123'
+        'password': 'thisispassword123'
     }, follow_redirects=True)
 
